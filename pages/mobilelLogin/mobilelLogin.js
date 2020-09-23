@@ -59,6 +59,9 @@ Page({
         console.log('验证成功提交')
         this.setData({
             showOneButtonDialog: true
+        });
+        wx.navigateTo({
+          url: '/pages/role/role',
         })
       }
     }

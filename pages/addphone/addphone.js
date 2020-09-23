@@ -60,6 +60,9 @@ Page({
         this.setData({
             showOneButtonDialog: true
         })
+        wx.navigateTo({
+          url: '/pages/role/role',
+        })
       }
     }
     

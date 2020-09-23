@@ -1,0 +1,10 @@
+/* miniprogram/pages/role/role.wxss */
+.img {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 80rpx auto 0 auto; 
+}
+.text {
+  color: #333;
+  font-size: 30rpx;
+}
