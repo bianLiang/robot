@@ -1,0 +1,37 @@
+<!--miniprogram/pages/login/login.wxml-->
+<cover-image class="logo" src="../../images/logo.png"></cover-image>
+<!-- 获取用户信息 -->
+<!-- <button open-type="getUserInfo"  style="margin-bottom:50rpx;" hover-class="none" class="login-btn {{select==1?'activeClass':''}}"  bindtap='selectBtn' data-num="1">微信用户快捷登录</button> -->
+<!-- 获取用户手机号 -->
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"  style="margin-bottom:50rpx;" hover-class="none" class="login-btn {{select==1?'activeClass':''}}"  bindtap='selectBtn' bindtap="weChartLogin"  data-num="1">微信用户快捷登录</button>
+<button hover-class="none" class="login-btn {{select==2?'activeClass':''}}"  bindtap='selectBtn' bindtap="phoneLogin" data-num="2">手机号码登录</button>
+<!-- <mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{[{text: '取消'}, {text: '确认'}]}}">
+    <view>test content</view>
+</mp-dialog> -->
+<mp-halfScreenDialog 
+  bindbuttontap="buttontap"
+  show="{{show}}"
+  closabled= "{{false}}"
+>
+  <view slot="title">
+	  <view class="title">
+      <cover-image class="min-logo" src="../../images/min_logo.png"></cover-image>
+      <text class="company">幼视通</text>
+      <text class="title-tips">申请使用</text>
+    </view>
+    
+	</view>
+  <view slot="desc">
+    <view class="phone-title">你的手机号码</view>
+    <view class="weChart-phone">
+      <text style="color:#333;font-size:30rpx;">18355463749</text>
+      <text style="color:#999;font-size:30rpx; margin-left:20rpx;">微信绑定号码</text>
+      <cover-image style="width: 37rpx;height: 39rpx; margin-left:232rpx;" src="../../images/dui.png"></cover-image>
+    </view>
+    <view class="other" bindtap='goAddPhone'>使用其他手机号码</view>
+  </view>
+   <view slot="footer" class="footer">
+	    <button  bindtap="refuse" >拒绝</button>
+	    <button  bindtap="allow" >允许</button>
+	  </view>
+</mp-halfScreenDialog>

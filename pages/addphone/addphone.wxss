@@ -1,0 +1,47 @@
+/* miniprogram/pages/addphone/addphone.wxss */
+.input-box{
+  display: flex;
+  width: 626rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #E2E2E2;
+  align-items: center;
+  margin-left: 5rpx;
+  padding: 24rpx;
+  justify-content: space-between;
+}
+.complete {
+  width: 654rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  background: #43B478;
+  color: #fff;
+  margin-top: 71rpx;
+  border-radius: 42rpx;
+}
+.code {
+  width: 150rpx;
+  height: 54rpx; 
+  line-height: 54rpx;
+  font-size: 26rpx;
+  background: #43B478;
+  color: #fff;
+  border-radius: 27rpx;
+  text-align: center;
+}
+/* .wx-switch-input{width:100rpx !important;height:50rpx !important;} */
+.wx-switch-input {
+  zoom: .6;
+}
+input::-webkit-input-placeholde{
+  color: #ccc;
+  font-size: 28rpx;
+}
+.box{
+  padding: 0 48rpx;
+}
+.is-code {
+  color: #999;
+  background: #f8f8f8;
+  pointer-events: none;
+}
+

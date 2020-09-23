@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "mp-toptips": "/miniprogram_npm/weui-miniprogram/toptips/toptips",
+    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "添加其他号码",
+  "navigationBarTextStyle": "black"
+}

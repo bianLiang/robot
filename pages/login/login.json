@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-halfScreenDialog": "/miniprogram_npm/weui-miniprogram/half-screen-dialog/half-screen-dialog"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "登录",
+  "navigationBarTextStyle": "black"
+}

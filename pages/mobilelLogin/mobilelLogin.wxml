@@ -1,0 +1,24 @@
+<!--miniprogram/pages/mobilelLogin/mobilelLogin.wxml-->
+<view class="box">
+  <view><text style="font-size:50rpx;color:#333;">您好,</text></view>
+<view><text style="font-size:36rpx;color:#333;">欢迎登录幼儿晨检机器人～</text></view>
+<view style="margin-top: 87rpx;">
+    <view class="input-box">
+  <cover-image style="width: 28rpx;height: 30rpx;" src="../../images/danren.png"></cover-image>
+  <input  value="{{ phone }}" bind:change="onChange" data-prop="phone" style="width: 577rpx;" type="number" maxlength="11" class="input" auto-focus placeholder="输入有效的手机号"/>
+</view>
+<view class="input-box">
+  <cover-image style="width: 28rpx;height: 30rpx;" src="../../images/key.png"></cover-image>
+  <input  value="{{ codeNumder }}" bind:change="onChange" data-prop="codeNumder" class="inpput" type="number" maxlength="6" placeholder="输入6位验证"/>
+  <span class="code {{isCode?'is-code':''}}"  bindtap="sendCode" >{{code}}</span>
+</view>
+</view>
+
+<view>
+  <button class="complete" bindtap="submit">完成</button>
+</view>
+</view>
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<mp-dialog  ext-class="dialog" show="{{showOneButtonDialog}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
+  <view style="color:#333;font-size:32rpx;">您暂未被添加到系统，请联系相关管理员</view>
+</mp-dialog>

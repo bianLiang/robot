@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "index/index",
+    "index/index2",
+    "pages/login/login",
+    "pages/addphone/addphone",
+    "pages/mobilelLogin/mobilelLogin"
+  ],
+  "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#43B478",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "index/index",
+        "iconPath": "images/jiankang.png",
+        "selectedIconPath": "images/jiankang_s.png",
+        "text": "健康考勤"
+      },
+      {
+        "pagePath": "index/index2",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_s.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "超能机器人",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}
