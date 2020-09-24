@@ -16,6 +16,13 @@ Page({
     });
     
   },
+  //时间选择器：
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      time: e.detail.value
+    })
+  },
   // 提交表单
   submit() {
     if (!this.data.name) {

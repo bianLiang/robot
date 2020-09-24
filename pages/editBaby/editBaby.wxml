@@ -17,7 +17,12 @@
 <view class="name-box">
   <text style="color:#888888;font-size:28rpx;">出生日期</text>
   <view style="#333;font-size:28rpx;width:200rpx;display: flex;align-items: center;">
-    <text>{{time}}</text>
+    <!-- <text>{{time}}</text> -->
+     <picker mode="date" value="{{time}}" start="" end="" bindchange="bindDateChange">
+        <view class="picker">
+          {{time}}
+        </view>
+      </picker>
     <mp-icon style="margin-left:20rpx;" icon="arrow" color="#333" size="{{10}}"></mp-icon>
   </view>
 </view>
@@ -26,6 +31,3 @@
 </view>
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 
-<picker mode="data" value="{{time}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-    <view class="weui-input">{{time}}</view>
-</picker>

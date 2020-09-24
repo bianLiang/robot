@@ -9,7 +9,8 @@
     "pages/parentUser/parentUser",
     "pages/teacherUser/teacherUser",
     "pages/baby/baby",
-    "pages/editBaby/editBaby"
+    "pages/editBaby/editBaby",
+    "pages/editCard/editCard"
   ],
   "tabBar": {
     "custom": true,

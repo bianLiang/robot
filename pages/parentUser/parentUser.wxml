@@ -17,7 +17,7 @@
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/card.png"></cover-image>
       <text style="margin-left:20rpx;">绑定身份卡</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goEditCard"></mp-icon>
   </view>
   <view class="item" style="margin-top:20rpx;">
     <view style="display: flex;">

@@ -1,4 +1,4 @@
-// miniprogram/pages/parentUser/parentUser.js
+// miniprogram/pages/editCard/editCard.js
 Page({
 
   /**
@@ -7,16 +7,7 @@ Page({
   data: {
 
   },
-  goBaby() {
-    wx.navigateTo({
-      url: '/pages/baby/baby',
-    })
-  },
-  goEditCard() {
-    wx.navigateTo({
-      url: '/pages/editCard/editCard',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
