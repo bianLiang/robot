@@ -1,11 +1,11 @@
 <!--miniprogram/pages/role/role.wxml-->
 <view style="text-align: center;">
   <view class="text" style="margin-top: 200rpx;">请选择你的身份</view>
-  <view bindtap="selectRole">
+  <view bindtap="selectRole" data-role="parent">
     <cover-image class="img" src="../../images/jiazhang.png"></cover-image>
     <view  class="text">我是家长</view>
   </view>
-   <view bindtap="selectRole">
+   <view bindtap="selectRole" data-role="teacher">
     <cover-image class="img" src="../../images/laoshi.png"></cover-image>
     <view  class="text">我是老师</view>
   </view>

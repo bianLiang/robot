@@ -5,7 +5,11 @@
     "pages/login/login",
     "pages/addphone/addphone",
     "pages/mobilelLogin/mobilelLogin",
-    "pages/role/role"
+    "pages/role/role",
+    "pages/parentUser/parentUser",
+    "pages/teacherUser/teacherUser",
+    "pages/baby/baby",
+    "pages/editBaby/editBaby"
   ],
   "tabBar": {
     "custom": true,

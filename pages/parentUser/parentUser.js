@@ -1,33 +1,17 @@
-// miniprogram/pages/role/role.js
+// miniprogram/pages/parentUser/parentUser.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    showOneButtonDialog:false,
-    oneButton: [{text: '我知道了'}]
+
   },
-  selectRole(e) {
-    if(e.currentTarget.dataset.role === 'parent') {
-      wx.switchTab({
-        url: '/index/index2',
-      })
-    }
-    if(e.currentTarget.dataset.role === 'teacher') {
-      wx.switchTab({
-        url: '/index/index2',
-      })
-    }
-    this.setData({
-      showOneButtonDialog: true
+  goBaby() {
+    wx.navigateTo({
+      url: '/pages/baby/baby',
     })
   },
-  tapDialogButton() {
-    this.setData({
-      showOneButtonDialog: false
-    })
-},
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,0 +1,14 @@
+<!--miniprogram/pages/baby/baby.wxml-->
+<view style="background: #f8f8f8;height: 100%;padding-top: 20rpx;">
+  <view style="margin-top:20rpx;">
+    <view wx:for="{{list}}" wx:for-item="item" wx:for-index="number"  class="item" style="border-bottom:1rpx solid #F2F2F2;">
+      <view style="display: flex;">
+        <text style="margin-left:20rpx;">{{item.name}}({{item.gender}})</text>
+      </view>
+      <view style="display: flex;align-items: center;">
+        <text style="margin-right:20rpx;color:#888888;">{{item.age}}</text>
+        <mp-icon icon="arrow" color="#888888" size="{{10}}" bindtap="goEditBaby"></mp-icon>
+      </view>
+    </view>
+  </view>
+</view>

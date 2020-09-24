@@ -1,33 +1,45 @@
-// miniprogram/pages/role/role.js
+// miniprogram/pages/editBaby/editBaby.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    showOneButtonDialog:false,
-    oneButton: [{text: '我知道了'}]
+    name:'',
+    select:'',
+    error:'',
+    time:'2020-06-01'
   },
-  selectRole(e) {
-    if(e.currentTarget.dataset.role === 'parent') {
-      wx.switchTab({
-        url: '/index/index2',
-      })
-    }
-    if(e.currentTarget.dataset.role === 'teacher') {
-      wx.switchTab({
-        url: '/index/index2',
-      })
-    }
+  selectBtn(event) {
     this.setData({
-      showOneButtonDialog: true
+      select: event.currentTarget.dataset.gender
+    });
+    
+  },
+  // 提交表单
+  submit() {
+    if (!this.data.name) {
+        this.setData({
+          error: '宝宝姓名不能为空'
+      })
+    } else {
+      if (!this.data.time) {
+          this.setData({
+            error: '出生日期不能为空'
+        })
+      } else {
+        console.log('验证成功提交')
+        wx.navigateTo({
+          url: '/pages/baby/baby',
+        })
+      }
+    }  
+  },
+  onChange(e) {
+    this.setData({
+      [e.currentTarget.dataset.prop]: e.detail.value
     })
   },
-  tapDialogButton() {
-    this.setData({
-      showOneButtonDialog: false
-    })
-},
   /**
    * 生命周期函数--监听页面加载
    */

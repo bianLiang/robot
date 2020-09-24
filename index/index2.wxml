@@ -1,1 +1,4 @@
-<view class="intro">个人中心</view>
+<!-- 家长个人中心 -->
+<parent-user></parent-user>
+<!-- 教师个人中心 -->
+<!-- <teacher-user></teacher-user> -->

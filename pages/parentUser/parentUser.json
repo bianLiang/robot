@@ -1,7 +1,6 @@
 {
   "usingComponents": {
-    "parent-user": "/pages/parentUser/parentUser",
-    "teacher-user": "/pages/teacherUser/teacherUser"
+    "mp-icon": "/miniprogram_npm/weui-miniprogram/icon/icon"
   },
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#43B478",

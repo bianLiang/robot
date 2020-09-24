@@ -1,33 +1,21 @@
-// miniprogram/pages/role/role.js
+// miniprogram/pages/baby/baby.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    showOneButtonDialog:false,
-    oneButton: [{text: '我知道了'}]
+    list:[
+      {name:'龙半斤',gender:'男',age:'5岁 2个月 12天'},
+      {name:'凤小凤',gender:'女',age:'3岁 7个月 15天'},
+    ]
   },
-  selectRole(e) {
-    if(e.currentTarget.dataset.role === 'parent') {
-      wx.switchTab({
-        url: '/index/index2',
-      })
-    }
-    if(e.currentTarget.dataset.role === 'teacher') {
-      wx.switchTab({
-        url: '/index/index2',
-      })
-    }
-    this.setData({
-      showOneButtonDialog: true
+  goEditBaby() {
+    wx.navigateTo({
+      url: '/pages/editBaby/editBaby',
     })
   },
-  tapDialogButton() {
-    this.setData({
-      showOneButtonDialog: false
-    })
-},
+
   /**
    * 生命周期函数--监听页面加载
    */
