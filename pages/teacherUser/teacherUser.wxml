@@ -11,28 +11,28 @@
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/geren.png"></cover-image>
       <text style="margin-left:20rpx;">个人信息</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goEditPersonal"></mp-icon>
   </view>
   <view class="item">
     <view style="display: flex;">
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/card.png"></cover-image>
       <text style="margin-left:20rpx;">我的身份卡</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goEditCard"></mp-icon>
   </view>
   <view class="item" style="margin-top:20rpx;border-bottom:1rpx solid #F2F2F2;">
     <view style="display: flex;">
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/xuexiao.png"></cover-image>
       <text style="margin-left:20rpx;">切换幼儿园</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goSwitchGarden"></mp-icon>
   </view>
   <view class="item" >
     <view style="display: flex;">
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/qiehuan.png"></cover-image>
       <text style="margin-left:20rpx;">切换角色</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goRole"></mp-icon>
   </view>
   
   <view class="sign-out">退出登录</view>

@@ -1,0 +1,18 @@
+/* pages/common/toptips.wxss */
+.info{
+  width: 450rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #000000;
+  border-radius: 10rpx;
+  opacity: 0.5;
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  margin-top: -45rpx;
+  left: 50%;
+  margin-left: -225rpx;
+  color: #FFFFFF;
+  font-size: 30rpx;
+  text-align: center;
+}

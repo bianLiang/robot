@@ -1,0 +1,25 @@
+<!--miniprogram/pages/editPersonal/editPersonal.wxml-->
+<cover-image style="width: 120rpx;height: 120rpx;margin:30rpx auto;" src="../../images/touxiang.png"></cover-image>
+<view class="age-box">
+  <view class="age-item">
+    <cover-image bindtap='selectBtn' data-gender="male" style="width: 90rpx;height: 90rpx;margin:10rpx auto;" src="{{select==='male'?'../../images/nan_s.png':'../../images/nan.png'}}"></cover-image>
+    <text class="age-text">小王子</text>
+  </view>
+  <view class="age-item">
+    <cover-image bindtap='selectBtn' data-gender="female" style="width: 90rpx;height: 90rpx;margin:10rpx auto;" src="{{select==='female'?'../../images/nv_s.png':'../../images/nv.png'}}"></cover-image>
+    <text class="age-text">小公主</text>
+  </view>
+</view>
+<view class="name-box">
+  <text style="color:#888888;font-size:28rpx;">宝宝姓名</text>
+  <input style="#333;font-size:28rpx;width:200rpx;" value="{{ name }}" bind:change="onChange" data-prop="name"  class="input" auto-focus placeholder="输入宝宝姓名"/>
+</view>
+<view class="name-box">
+  <text style="color:#888888;font-size:28rpx;">手机号</text>
+  <input style="#333;font-size:28rpx;width:200rpx;" value="{{ phone }}" bind:change="onChange" data-prop="phone"  class="input" auto-focus placeholder="输入手机号"/>
+</view>
+
+<view>
+  <button class="complete" bindtap="submit">保存</button>
+</view>
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>

@@ -1,32 +1,45 @@
-// miniprogram/pages/teacherUser/teacherUser.js
+// miniprogram/pages/editPersonal/editPersonal.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    name:'',
+    phone:'',
+    select:'',
+    error:'',
+  },
+  onChange(e) {
+    this.setData({
+      [e.currentTarget.dataset.prop]: e.detail.value
+    })
+  },
+  // 提交表单
+  submit() {
+    if (!this.data.name) {
+        this.setData({
+          error: '姓名不能为空'
+      })
+    } else {
+      if (!this.data.phone) {
+          this.setData({
+            error: '手机号码不能为空'
+        })
+      } else {
+        console.log('验证成功提交')
+        wx.switchTab({
+          url: '/index/index2',
+        })
+      }
+    }  
+  },
+  selectBtn(event) {
+    this.setData({
+      select: event.currentTarget.dataset.gender
+    });
+  },
 
-  },
-  goEditPersonal() {
-    wx.navigateTo({
-      url: '/pages/editPersonal/editPersonal',
-    })
-  },
-  goEditCard() {
-    wx.navigateTo({
-      url: '/pages/editCard/editCard',
-    })
-  },
-  goSwitchGarden() {
-    wx.navigateTo({
-      url: '/pages/switchGarden/switchGarden',
-    })
-  },
-  goRole() {
-    wx.navigateTo({
-      url: '/pages/role/role',
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */

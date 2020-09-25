@@ -1,32 +1,29 @@
-// miniprogram/pages/teacherUser/teacherUser.js
+// miniprogram/pages/switchGarden/switchGarden.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    list:[
+      {name:'七彩幼儿园',value:1,checked: 'true'},
+      {name:'小太阳幼儿园',value:1,checked: 'false'},
+    ]
+  },
+  radioChange(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
 
-  },
-  goEditPersonal() {
-    wx.navigateTo({
-      url: '/pages/editPersonal/editPersonal',
+    const items = this.data.list
+    for (let i = 0, len = items.length; i < len; ++i) {
+      items[i].checked = items[i].value === e.detail.value
+    }
+
+    this.setData({
+      items
     })
   },
-  goEditCard() {
-    wx.navigateTo({
-      url: '/pages/editCard/editCard',
-    })
-  },
-  goSwitchGarden() {
-    wx.navigateTo({
-      url: '/pages/switchGarden/switchGarden',
-    })
-  },
-  goRole() {
-    wx.navigateTo({
-      url: '/pages/role/role',
-    })
-  },
+  submit() {},
+
   /**
    * 生命周期函数--监听页面加载
    */

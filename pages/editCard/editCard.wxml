@@ -1,2 +1,22 @@
 <!--miniprogram/pages/editCard/editCard.wxml-->
-<text>miniprogram/pages/editCard/editCard.wxml</text>
+
+<view style="text-align: center; color: #333;font-size: 28rpx;margin-top: 180rpx;">
+  <text>请选择绑定方式</text>
+</view>
+<view class="img-box">
+  <view class="img-item" data-type="code" bindtap='selectBtn'>
+    <cover-image style="height: 122rpx;width:122rpx;margin: 0rpx auto 22rpx auto;" src="{{type==='code'? '../../images/saoma_s.png':'../../images/saoma.png'}}"></cover-image>
+    <text class="{{type==='code'? 'is-text':''}}">扫码绑定</text>
+  </view>
+  <view class="img-item" data-type="num" bindtap='selectBtn'>
+    <cover-image style="height: 122rpx;width:122rpx;margin: 0rpx auto 22rpx auto;" src="{{type==='num'?'../../images/xuhao_s.png':'../../images/xuhao.png'}}"></cover-image>
+    <text class="{{type==='num'? 'is-text':''}}">序列号绑定</text>
+  </view>
+</view>
+<cover-image  wx:if="{{type==='code'||type===''}}" style="height: 120rpx;width:120rpx;margin:0 auto;" bindtap="ocridcard" src="{{type==='code'?'../../images/xiangji_s.png':'../../images/xiangji.png'}}"></cover-image>
+<input wx:if="{{type==='num'}}" value="{{ sequence }}" bind:change="onChange" data-prop="sequence"  class="sequence-input"  auto-focus placeholder="请输入绑定身份卡序列号"/>
+<view wx:if="{{type==='num'}}">
+  <button class="complete" bindtap="submit">保存</button>
+</view>
+<mp-toptips ext-class="bg" msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<my-toptips id='toptips' content="您已完成身份卡绑定～" bind:show="_show"></my-toptips>

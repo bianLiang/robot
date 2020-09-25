@@ -1,0 +1,38 @@
+/* miniprogram/pages/switchGarden/switchGarden.wxss */
+.grden-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  width: 702rpx;
+  height: 90rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin: 24rpx auto;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+page{
+  width: 100%;
+  height: 100%;
+}
+.box {
+  width: 100%;
+  height: 100%;
+  background: #f8f8f8;
+  padding-top: 24rpx;
+}
+.complete {
+  width: 654rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  background: #43B478;
+  color: #fff;
+  border-radius: 42rpx;
+  position: fixed;
+  bottom: 30rpx;
+  left: 50%;
+  margin-left: -327rpx;
+  font-size: 32rpx;
+}

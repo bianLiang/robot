@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-toptips": "/miniprogram_npm/weui-miniprogram/toptips/toptips",
+    "my-toptips":"/pages/common/toptips"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "绑定身份卡",
+  "navigationBarTextStyle": "black"
 }

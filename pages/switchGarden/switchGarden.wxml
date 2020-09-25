@@ -1,0 +1,13 @@
+<!--miniprogram/pages/switchGarden/switchGarden.wxml-->
+<view class="box">
+  <radio-group bindchange="radioChange">
+    <view class="grden-item" wx:for="{{list}}" wx:key="index">
+        <text>{{item.name}}</text>
+        <radio style="transform:scale(0.7);" color="#43B478" value="{{item.value}}" checked="true"/>
+    </view>
+  </radio-group>
+  <view>
+    <button class="complete" bindtap="submit">确定</button>
+  </view>
+</view>
+

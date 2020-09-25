@@ -24,7 +24,7 @@
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/qiehuan.png"></cover-image>
       <text style="margin-left:20rpx;">切换角色</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goRole"></mp-icon>
   </view>
   <view class="sign-out">退出登录</view>
 </view>

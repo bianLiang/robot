@@ -17,6 +17,11 @@ Page({
       url: '/pages/editCard/editCard',
     })
   },
+  goRole() {
+    wx.navigateTo({
+      url: '/pages/role/role',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

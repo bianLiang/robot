@@ -10,7 +10,10 @@
     "pages/teacherUser/teacherUser",
     "pages/baby/baby",
     "pages/editBaby/editBaby",
-    "pages/editCard/editCard"
+    "pages/editCard/editCard",
+    "pages/js/profunc",
+    "pages/editPersonal/editPersonal",
+    "pages/switchGarden/switchGarden"
   ],
   "tabBar": {
     "custom": true,

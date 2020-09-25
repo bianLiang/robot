@@ -1,0 +1,2 @@
+<!--pages/common/toptips.wxml-->
+<view wx:if="{{isShow}}" class="info">{{content}}</view>

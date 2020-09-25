@@ -14,7 +14,6 @@ Page({
     this.setData({
       select: event.currentTarget.dataset.gender
     });
-    
   },
   //时间选择器：
   bindDateChange: function (e) {
