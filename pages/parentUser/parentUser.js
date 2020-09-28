@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userInfo:'',
   },
   goBaby() {
     wx.navigateTo({
@@ -22,11 +22,26 @@ Page({
       url: '/pages/role/role',
     })
   },
+  goLogin() {
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success (res) {
+        console.log(res.data)
+        that.setData({
+          userInfo:res.data
+        })
+        
+      }
+    })
   },
 
   /**

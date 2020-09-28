@@ -5,7 +5,7 @@ function OcrIdCard(access_token){
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
+      sourceType: ['camera','album' ],
       success: function (res) {
         console.log(res.tempFilePaths)
           //核心代码
@@ -16,14 +16,10 @@ function OcrIdCard(access_token){
             // console.log(ans.data)
             wx.showLoading({ title: '识别中' })
             wx.request({
-              url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/idcard?access_token=' + access_token,
+              url: 'https://api.weixin.qq.com/cv/ocr/idcard?type=photo&img_url='+ ans.data +'&access_token='+access_token+'',
               method: 'POST',
               header: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              data: {
-                image: ans.data,
-                id_card_side: 'front'
               },
               success(_res) {
                 wx.hideLoading();
@@ -37,6 +33,28 @@ function OcrIdCard(access_token){
                 reject(_res)
               }
             })
+            // wx.request({
+            //   url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/idcard?access_token=' + access_token,
+            //   method: 'POST',
+            //   header: {
+            //     'Content-Type': 'application/x-www-form-urlencoded'
+            //   },
+            //   data: {
+            //     image: ans.data,
+            //     id_card_side: 'front'
+            //   },
+            //   success(_res) {
+            //     wx.hideLoading();
+            //     resolve(_res)
+                
+            //   }, fail(_res) {
+            //     wx.hideLoading();
+            //     wx.showToast({
+            //       title: '请求出错',
+            //     })
+            //     reject(_res)
+            //   }
+            // })
           }
         })
       }

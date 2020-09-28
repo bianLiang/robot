@@ -1,4 +1,6 @@
 // miniprogram/pages/login/login.js
+// const WXBizDataCrypt = require('../js/WXBizDataCrypt')
+const RdWXBizDataCrypt = require('../js/WXBizDataCrypt')
 Page({
 
   /**
@@ -6,7 +8,8 @@ Page({
    */
   data: {
     select: 0,
-    show: false
+    show: false,
+    access_key:''
   },
   open: function () {
     this.setData({
@@ -34,9 +37,9 @@ Page({
   },
   // 去微信登录
   weChartLogin() {
-    this.setData({
-      show: true
-    })
+    // this.setData({
+    //   show: true
+    // })
   },
   // 去手机号登录
   phoneLogin() {
@@ -63,6 +66,15 @@ Page({
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
+    
+    var appId = 'wx05704d42988e616e'
+    var sessionKey = this.data.access_key
+    var encryptedData = e.detail.encryptedData
+    var iv = e.detail.iv
+
+    const pc = new RdWXBizDataCrypt(appId, sessionKey);
+    const data = pc.decryptData(encryptedData, iv);
+    console.log('解密后 data: ', data)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -74,6 +86,16 @@ Page({
         let code = res.code;
       }
     });
+    const that = this;
+    wx.getStorage({
+      key: 'access_key',
+      success (res) {
+        that.setData({
+          access_key:res.data
+        })
+        console.log(that.data.access_key)
+      }
+    })
   },
 
   /**

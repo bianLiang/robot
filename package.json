@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "crypto-js": "^4.0.0",
     "weui-miniprogram": "^1.0.5"
   },
   "devDependencies": {},

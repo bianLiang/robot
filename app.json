@@ -11,7 +11,6 @@
     "pages/baby/baby",
     "pages/editBaby/editBaby",
     "pages/editCard/editCard",
-    "pages/js/profunc",
     "pages/editPersonal/editPersonal",
     "pages/switchGarden/switchGarden"
   ],

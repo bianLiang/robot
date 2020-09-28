@@ -1,4 +1,4 @@
 <!-- 家长个人中心 -->
-<!-- <parent-user></parent-user> -->
+<parent-user></parent-user>
 <!-- 教师个人中心 -->
-<teacher-user></teacher-user>
+<!-- <teacher-user></teacher-user> -->

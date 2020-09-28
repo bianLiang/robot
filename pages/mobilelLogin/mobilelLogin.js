@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid:'',
     switch1Checked:true,
     code:'获取验证码',
     isCode:false,
@@ -37,6 +38,13 @@ Page({
         }
         
       },1000)
+      wx.request({
+        url: 'http://yosee.mingcloud.net/yms/wx/send/V1?phone='+that.data.phone+'&open_id='+that.data.appid+'',
+        method: 'POST',
+        success: function(res) {
+          console.log(res.data)
+        }
+      })
     } else {
       this.setData({
           error: '手机号码不能为空'
@@ -46,6 +54,7 @@ Page({
   },
   // 提交表单
   submit() {
+    const that = this;
     if (!this.data.phone) {
         this.setData({
           error: '手机号码不能为空'
@@ -57,12 +66,30 @@ Page({
         })
       } else {
         console.log('验证成功提交')
-        this.setData({
-            showOneButtonDialog: true
-        });
-        wx.navigateTo({
-          url: '/pages/role/role',
+        wx.request({
+          url: 'http://yosee.mingcloud.net/yms/wx/bind/V1?app_id=wx05704d42988e616e&phone='+that.data.phone+'&open_id='+that.data.openid+'&code='+this.data.codeNumder+'',
+          method: 'POST',
+          success: function(res) {
+            if (res.data.code == 200) {
+              // 保存登录信息
+              wx.setStorage({
+                key: 'userInfo',
+                data: res.data.data
+              })
+              wx.navigateTo({
+                url: '/pages/role/role',
+              })
+
+            } else {
+              // 提示添加到系统提示
+              this.setData({
+                  showOneButtonDialog: true
+              });
+            }
+          },
         })
+        
+        
       }
     }
     
@@ -81,7 +108,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
+    const that = this;
+    wx.getStorage({
+      key: 'openid',
+      success (res) {
+        that.setData({
+          openid:res.data
+        })
+        console.log(that.data.appid)
+      }
+    })
   },
 
   /**

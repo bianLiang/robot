@@ -5,9 +5,9 @@
       <view style="display: flex;">
         <text style="margin-left:20rpx;">{{item.name}}({{item.gender}})</text>
       </view>
-      <view style="display: flex;align-items: center;">
+      <view bindtap="goEditBaby" style="display: flex;align-items: center;">
         <text style="margin-right:20rpx;color:#888888;">{{item.age}}</text>
-        <mp-icon icon="arrow" color="#888888" size="{{10}}" bindtap="goEditBaby"></mp-icon>
+        <mp-icon icon="arrow" color="#888888" size="{{10}}" ></mp-icon>
       </view>
     </view>
   </view>

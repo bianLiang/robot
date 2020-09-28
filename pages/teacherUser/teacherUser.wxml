@@ -1,38 +1,38 @@
 <!--miniprogram/pages/teacherUser/teacherUser.wxml-->
 <view class="head">
-  <cover-image style="width: 120rpx;height: 120rpx; position: absolute;left: 50%;margin-left: -60rpx;top: 30rpx;" src="../../images/touxiang.png"></cover-image>
-  <text style="position: absolute;top:160rpx;left:50%;width:100rpx;margin-left:-50rpx;text-align: center;font-size:28rpx;">登录</text>
-  <text style="position: absolute;top:195rpx;left:50%;width:400rpx;margin-left:-200rpx;text-align: center;font-size:28rpx;">小太阳幼儿园</text>
+  <cover-image bindtap="goLogin" style="width: 120rpx;height: 120rpx; position: absolute;left: 50%;margin-left: -60rpx;top: 30rpx;" src="../../images/touxiang.png"></cover-image>
+  <text style="position: absolute;top:160rpx;left:0;width:100%;text-align: center;font-size:28rpx;">登录</text>
+  <text style="position: absolute;top:195rpx;left:0;width:100%;text-align: center;font-size:28rpx;">小太阳幼儿园</text>
 </view>
 <view style="background: #f8f8f8;height: 100%;">
   <view style="padding:24rpx;background: #fff;color:#333333;font-size:30rpx;">我的服务</view>
-  <view class="item" style="border-bottom:1rpx solid #F2F2F2;">
+  <view bindtap="goEditPersonal" class="item" style="border-bottom:1rpx solid #F2F2F2;">
     <view style="display: flex;">
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/geren.png"></cover-image>
       <text style="margin-left:20rpx;">个人信息</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goEditPersonal"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" ></mp-icon>
   </view>
-  <view class="item">
+  <view bindtap="goEditCard" class="item">
     <view style="display: flex;">
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/card.png"></cover-image>
       <text style="margin-left:20rpx;">我的身份卡</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goEditCard"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" ></mp-icon>
   </view>
-  <view class="item" style="margin-top:20rpx;border-bottom:1rpx solid #F2F2F2;">
+  <view bindtap="goSwitchGarden" class="item" style="margin-top:20rpx;border-bottom:1rpx solid #F2F2F2;">
     <view style="display: flex;">
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/xuexiao.png"></cover-image>
       <text style="margin-left:20rpx;">切换幼儿园</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goSwitchGarden"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" ></mp-icon>
   </view>
-  <view class="item" >
+  <view bindtap="goRole" class="item" >
     <view style="display: flex;">
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/qiehuan.png"></cover-image>
       <text style="margin-left:20rpx;">切换角色</text>
     </view>
-    <mp-icon icon="arrow" color="#444" size="{{10}}" bindtap="goRole"></mp-icon>
+    <mp-icon icon="arrow" color="#444" size="{{10}}" ></mp-icon>
   </view>
   
   <view class="sign-out">退出登录</view>

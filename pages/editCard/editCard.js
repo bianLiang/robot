@@ -39,28 +39,26 @@ ocridcard() {
     cwx.OcrIdCard(that.data.access_token).then(function(_res){
       var trdata = _res.data.words_result;
       console.log(trdata)
-      that.setData({
-        name: trdata['姓名'].words,
-        idcard: trdata['公民身份号码'].words,
-        userloc: trdata['住址'].words
-      })
+      // that.setData({
+      //   name: trdata['姓名'].words,
+      //   idcard: trdata['公民身份号码'].words,
+      //   userloc: trdata['住址'].words
+      // })
   })      
 },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // const serverUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=refresh_token&appid=wx05704d42988e616e&secret=159ea6862c587873d986a5d474fa7a54';
-    // wx.request({
-    //       url: serverUrl,
-    //       method: 'GET',
-    //       dataType: 'json',
-    //       success: function (res) {
-    //         console.log('data : ', res.data)
-    //       },
-    //       fail: function (res) { },
-    //       complete: function (res) { },
-    //     })
+    const that = this;
+    wx.getStorage({
+      key: 'access_token',
+      success (res) {
+        that.setData({
+          access_token:res.data.data
+        })
+      }
+    })
   },
 
   /**

@@ -13,7 +13,8 @@
     <text class="{{type==='num'? 'is-text':''}}">序列号绑定</text>
   </view>
 </view>
-<cover-image  wx:if="{{type==='code'||type===''}}" style="height: 120rpx;width:120rpx;margin:0 auto;" bindtap="ocridcard" src="{{type==='code'?'../../images/xiangji_s.png':'../../images/xiangji.png'}}"></cover-image>
+<cover-image  wx:if="{{type==='code'}}" style="height: 120rpx;width:120rpx;margin:0 auto;" bindtap="ocridcard" src="{{type==='code'?'../../images/xiangji_s.png':'../../images/xiangji.png'}}"></cover-image>
+<cover-image  wx:if="{{type===''}}" style="height: 120rpx;width:120rpx;margin:0 auto;" src="{{type==='code'?'../../images/xiangji_s.png':'../../images/xiangji.png'}}"></cover-image>
 <input wx:if="{{type==='num'}}" value="{{ sequence }}" bind:change="onChange" data-prop="sequence"  class="sequence-input"  auto-focus placeholder="请输入绑定身份卡序列号"/>
 <view wx:if="{{type==='num'}}">
   <button class="complete" bindtap="submit">保存</button>
