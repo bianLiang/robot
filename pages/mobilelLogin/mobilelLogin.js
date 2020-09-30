@@ -55,44 +55,58 @@ Page({
   // 提交表单
   submit() {
     const that = this;
-    if (!this.data.phone) {
-        this.setData({
-          error: '手机号码不能为空'
-      })
-    } else {
-      if (!this.data.codeNumder) {
+    wx.request({
+      url: 'http://yosee.mingcloud.net/yms/wx/bind/V1?app_id=wx05704d42988e616e&phone='+that.data.phone+'&open_id='+that.data.openid+'&code='+that.data.codeNumder+'',
+      method: 'POST',
+      success: function(res) {
+        if (res.data.code == 200) {
+          console.log()
+          // 保存登录信息
+          wx.setStorage({
+            key: 'userInfo',
+            data: res.data.data
+          })
+          that.getUserInfo(res.data.data.userid)
+        } else {
+          // 提示添加到系统提示
           this.setData({
-            error: '验证码不能为空'
-        })
-      } else {
-        console.log('验证成功提交')
-        wx.request({
-          url: 'http://yosee.mingcloud.net/yms/wx/bind/V1?app_id=wx05704d42988e616e&phone='+that.data.phone+'&open_id='+that.data.openid+'&code='+this.data.codeNumder+'',
-          method: 'POST',
-          success: function(res) {
-            if (res.data.code == 200) {
-              // 保存登录信息
-              wx.setStorage({
-                key: 'userInfo',
-                data: res.data.data
-              })
-              wx.navigateTo({
-                url: '/pages/role/role',
-              })
-
-            } else {
-              // 提示添加到系统提示
-              this.setData({
-                  showOneButtonDialog: true
-              });
-            }
-          },
-        })
+              showOneButtonDialog: true
+          });
+        }
+      },
+    })
+    // if (!this.data.phone) {
+    //     this.setData({
+    //       error: '手机号码不能为空'
+    //   })
+    // } else {
+    //   if (!this.data.codeNumder) {
+    //       this.setData({
+    //         error: '验证码不能为空'
+    //     })
+    //   } else {
+    //     console.log('验证成功提交')
         
+        
+        
+    //   }
+    // }
+    
+  },
+  // 获取用户详细信息
+  getUserInfo(userid) {
+    wx.request({
+      url: 'http://yosee.mingcloud.net/yms/user/info',
+      method: 'GET',
+      data:{userId:userid},
+      success: function(res) {
+        console.log(res.data.data.privilege)
+        wx.switchTab({
+          url: '/index/index2'
+        })
         
       }
-    }
-    
+    })
   },
   tapDialogButton() {
       this.setData({

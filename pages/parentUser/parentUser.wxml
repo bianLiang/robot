@@ -1,7 +1,7 @@
 <!--miniprogram/pages/parentUser/parentUser.wxml-->
 <view class="head">
-  <cover-image bindtap="goLogin" style="width: 120rpx;height: 120rpx; position: absolute;left: 50%;margin-left: -60rpx;top: 40rpx;" src="../../images/touxiang.png"></cover-image>
-  <text style="position: absolute;top:180rpx;left:0;width:100%;text-align: center;font-size:28rpx;">{{userInfo?userInfo.username:'登录'}}</text>
+  <cover-image bindtap="goLogin" style="width: 120rpx;height: 120rpx; position: absolute;left: 50%;margin-left: -60rpx;top: 40rpx;" src="{{userData.img?userData.img:'../../images/touxiang.png'}}"></cover-image>
+  <text style="position: absolute;top:180rpx;left:0;width:100%;text-align: center;font-size:28rpx;">{{userData?userData.userName:'登录'}}</text>
 </view>
 <view style="background: #f8f8f8;height: 100%;">
   <view style="padding:24rpx;background: #fff;color:#333333;font-size:30rpx;">我的服务</view>
@@ -12,7 +12,7 @@
     </view>
     <mp-icon icon="arrow" color="#444" size="{{10}}" ></mp-icon>
   </view>
-  <view bindtap="goEditCard" class="item">
+  <!-- <view bindtap="goEditCard" class="item">
     <view style="display: flex;">
       <cover-image style="width: 44rpx;height: 44rpx;" src="../../images/card.png"></cover-image>
       <text style="margin-left:20rpx;">绑定身份卡</text>
@@ -25,7 +25,8 @@
       <text style="margin-left:20rpx;">切换角色</text>
     </view>
     <mp-icon icon="arrow" color="#444" size="{{10}}" ></mp-icon>
-  </view>
-  <view class="sign-out">退出登录</view>
+  </view> -->
+  <view class="sign-out" bindtap="goLogin">退出登录</view>
+  <!-- <view>手机1{{userData.phone}}</view> -->
 </view>
 

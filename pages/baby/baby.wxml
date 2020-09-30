@@ -3,9 +3,9 @@
   <view style="margin-top:20rpx;">
     <view wx:for="{{list}}" wx:for-item="item" wx:for-index="number"  class="item" style="border-bottom:1rpx solid #F2F2F2;">
       <view style="display: flex;">
-        <text style="margin-left:20rpx;">{{item.name}}({{item.gender}})</text>
+        <text style="margin-left:20rpx;">{{item.studentName}}({{item.sex==='0'?'男':'女'}})</text>
       </view>
-      <view bindtap="goEditBaby" style="display: flex;align-items: center;">
+      <view bindtap="goEditBaby" data-num="{{number}}" style="display: flex;align-items: center;">
         <text style="margin-right:20rpx;color:#888888;">{{item.age}}</text>
         <mp-icon icon="arrow" color="#888888" size="{{10}}" ></mp-icon>
       </view>

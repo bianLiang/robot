@@ -12,13 +12,13 @@
 </view>
 <view class="name-box">
   <text style="color:#888888;font-size:28rpx;">宝宝姓名</text>
-  <input style="#333;font-size:28rpx;width:200rpx;" value="{{ name }}" bind:change="onChange" data-prop="name"  class="input" auto-focus placeholder="输入宝宝姓名"/>
+  <input style="#333;font-size:28rpx;width:200rpx;" value="{{ dataBaby.studentName }}" bind:change="onChange" data-prop="name"  class="input" auto-focus placeholder="输入宝宝姓名"/>
 </view>
 <view class="name-box">
   <text style="color:#888888;font-size:28rpx;">出生日期</text>
   <view style="#333;font-size:28rpx;width:200rpx;display: flex;align-items: center;">
     <!-- <text>{{time}}</text> -->
-     <picker mode="date" value="{{time}}" start="" end="" bindchange="bindDateChange">
+     <picker mode="date" value="{{dataBaby.birthday?dataBaby.birthday: '2020-06-01'}}" start="" end="" bindchange="bindDateChange">
         <view class="picker">
           {{time}}
         </view>

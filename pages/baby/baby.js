@@ -6,13 +6,12 @@ Page({
    */
   data: {
     list:[
-      {name:'龙半斤',gender:'男',age:'5岁 2个月 12天'},
-      {name:'凤小凤',gender:'女',age:'3岁 7个月 15天'},
+      {studentName:'龙半斤',sex:'男',age:'5岁 2个月 12天'}
     ]
   },
-  goEditBaby() {
+  goEditBaby(event) {
     wx.navigateTo({
-      url: '/pages/editBaby/editBaby',
+      url: '/pages/editBaby/editBaby?index='+event.currentTarget.dataset.num+'',
     })
   },
 
@@ -20,7 +19,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this;
+    wx.getStorage({
+      key: 'userData',
+      success (res) {
+        console.log(res.data)
+        that.setData({
+          list: res.data.studentList
+        })
+      }
+    })
   },
 
   /**

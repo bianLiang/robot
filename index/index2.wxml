@@ -1,4 +1,4 @@
 <!-- 家长个人中心 -->
-<parent-user></parent-user>
+<parent-user id='user' userData="{{userData}}" wx-if="{{privilege==='f-1'|| privilege==='j-1'}}"></parent-user>
 <!-- 教师个人中心 -->
-<!-- <teacher-user></teacher-user> -->
+<teacher-user id='user' userData="{{userData}}" wx-if="{{privilege==='y-1'|| privilege==='y-2'}}"></teacher-user>

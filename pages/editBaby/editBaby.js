@@ -8,7 +8,8 @@ Page({
     name:'',
     select:'',
     error:'',
-    time:'2020-06-01'
+    time:'2020-06-01',
+    dataBaby:{}
   },
   selectBtn(event) {
     this.setData({
@@ -34,10 +35,25 @@ Page({
             error: '出生日期不能为空'
         })
       } else {
-        console.log('验证成功提交')
-        wx.navigateTo({
-          url: '/pages/baby/baby',
+        // console.log(this.data.select)
+        // console.log(this.data.name)
+        // console.log(this.data.time)
+        console.log(this.data.dataBaby)
+        const that = this;
+        const data = this.data.dataBaby;
+        const sex = this.data.select==='male'? '0':'1'
+        wx.request({
+          url: 'http://yosee.mingcloud.net/yms/user/student/edit?studentId='+data.studentId+'&name='+that.data.name+'&birthday='+that.data.time+'&sex='+sex+'',
+          method: 'POST',
+          success: function(res) {
+            wx.switchTab({
+              url: '/index/index2'
+            })
+          }
         })
+        // wx.navigateTo({
+        //   url: '/pages/baby/baby',
+        // })
       }
     }  
   },
@@ -50,7 +66,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    const that = this;
+    wx.getStorage({
+      key: 'userData',
+      success (res) {
+        console.log(res.data)
+        that.setData({
+          dataBaby: res.data.studentList[options.index],
+          time:res.data.studentList[options.index].birthday,
+          select:res.data.studentList[options.index].sex==='0'? 'male':'female'
+        })
+      }
+    })
   },
 
   /**

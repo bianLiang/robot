@@ -9,6 +9,7 @@ Page({
     phone:'',
     select:'',
     error:'',
+    userId:''
   },
   onChange(e) {
     this.setData({
@@ -28,8 +29,16 @@ Page({
         })
       } else {
         console.log('验证成功提交')
-        wx.switchTab({
-          url: '/index/index2',
+        const that = this;
+        const sex = this.data.select==='male'? '0':'1'
+        wx.request({
+          url: 'http://yosee.mingcloud.net/yms/user/edit?userId='+that.data.userId+'&name='+that.data.name+'&sex='+sex+'',
+          method: 'POST',
+          success: function(res) {
+            wx.switchTab({
+              url: '/index/index2'
+            })
+          }
         })
       }
     }  
@@ -44,7 +53,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this;
+    wx.getStorage({
+      key: 'userData',
+      success (res) {
+        console.log(res.data)
+        that.setData({
+          name: res.data.realName,
+          phone: res.data.phone,
+          select:res.data.sex==='0'? 'male':'female',
+          userId:res.data.userId
+        })
+      }
+    })
   },
 
   /**

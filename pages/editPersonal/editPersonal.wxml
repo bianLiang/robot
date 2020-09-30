@@ -11,12 +11,12 @@
   </view>
 </view>
 <view class="name-box">
-  <text style="color:#888888;font-size:28rpx;">宝宝姓名</text>
-  <input style="#333;font-size:28rpx;width:200rpx;" value="{{ name }}" bind:change="onChange" data-prop="name"  class="input" auto-focus placeholder="输入宝宝姓名"/>
+  <text style="color:#888888;font-size:28rpx;">姓名</text>
+  <input style="#333;font-size:28rpx;width:200rpx;" value="{{ name }}" bind:change="onChange" data-prop="name"  class="input" auto-focus placeholder="输入姓名"/>
 </view>
 <view class="name-box">
   <text style="color:#888888;font-size:28rpx;">手机号</text>
-  <input style="#333;font-size:28rpx;width:200rpx;" value="{{ phone }}" bind:change="onChange" data-prop="phone"  class="input" auto-focus placeholder="输入手机号"/>
+  <input disabled="true" style="#333;font-size:28rpx;width:200rpx;" value="{{ phone }}" bind:change="onChange" data-prop="phone"  class="input" auto-focus placeholder="输入手机号"/>
 </view>
 
 <view>

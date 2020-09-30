@@ -26,9 +26,13 @@ RdWXBizDataCrypt.prototype.decryptData = function(encryptedData, iv) {
       } catch (err) {
         console.log(err)
     }
-    if (decryptResult.watermark.appid !== this.appId) {
-        console.log(err)
+    console.log(decryptResult)
+    if(decryptResult) {
+        if (decryptResult.watermark.appid !== this.appId) {
+            console.log(err)
+        }
     }
+    
     return decryptResult
 }
 module.exports = RdWXBizDataCrypt

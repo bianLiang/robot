@@ -9,7 +9,10 @@ Page({
   data: {
     select: 0,
     show: false,
-    access_key:''
+    access_key:'',
+    openid:'',
+    showOneButtonDialog: false,
+    oneButton: [{text: '我知道了'}],
   },
   open: function () {
     this.setData({
@@ -61,39 +64,114 @@ Page({
     }
 
   },
+  tapDialogButton() {
+      this.setData({
+        showOneButtonDialog: false
+    })
+  },
   getPhoneNumber(e) {
-    // 这里需要进行后台解密获取手机号
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
+    const that = this;
+    // console.log(this.data.access_key)
+    wx.getStorage({
+      key: 'access_key',
+      success (res) {
+        console.log(res)
+        that.setData({
+          access_key:res.data
+        })
+        console.log(that.data.access_key,'执行哈哈哈哈')
+        if(e.detail.iv) {
+          console.log(e.detail.errMsg)
+          console.log(e.detail.iv)
+          console.log(e.detail.encryptedData)
+          var appId = 'wx05704d42988e616e'
+          var sessionKey = that.data.access_key
+          var encryptedData = e.detail.encryptedData
+          var iv = e.detail.iv
+          const pc = new RdWXBizDataCrypt(appId, sessionKey);
+          const data = pc.decryptData(encryptedData, iv);
+          console.log('解密后 data: ', data)
+          wx.request({
+            url: 'http://yosee.mingcloud.net/yms/wx/bind/V2?app_id=wx05704d42988e616e&phone='+data.phoneNumber+'&open_id='+that.data.openid+'',
+            method: 'POST',
+            success: function(res) {
+              console.log(res.data.data)
+              if (res.data.code == 200) {
+                // 保存登录信息
+                wx.setStorage({
+                  key: 'userInfo',
+                  data: res.data.data
+                })
+                that.getUserInfo(res.data.data.userid)
     
-    var appId = 'wx05704d42988e616e'
-    var sessionKey = this.data.access_key
-    var encryptedData = e.detail.encryptedData
-    var iv = e.detail.iv
-
-    const pc = new RdWXBizDataCrypt(appId, sessionKey);
-    const data = pc.decryptData(encryptedData, iv);
-    console.log('解密后 data: ', data)
+              } else {
+                // 提示添加到系统提示
+                that.setData({
+                    showOneButtonDialog: true
+                });
+              }
+            },
+          })
+        }
+      }
+    })
+    
+  },
+  // 获取用户详细信息
+  getUserInfo(userid) {
+    wx.request({
+      url: 'http://yosee.mingcloud.net/yms/user/info',
+      method: 'GET',
+      data:{userId:userid},
+      success: function(res) {
+        console.log(res.data.data.privilege)
+        // wx.setStorage({
+        //   key: 'role',
+        //   data: res.data.data.privilege
+        // })
+        // if (res.data.data.privilege === 'f-1') {
+        //   wx.navigateTo({
+        //     url: '/pages/role/role',
+        //   })
+        // } else {
+        //   wx.switchTab({
+        //     url: '/index/index2',
+        //   })
+        // }
+        wx.switchTab({
+          url: '/index/index2'
+        })
+        
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const that = this;
     wx.login({
       success: function (res) {
         console.log(res);
         let code = res.code;
       }
     });
-    const that = this;
+    // wx.getStorage({
+    //   key: 'access_key',
+    //   success (res) {
+    //     that.setData({
+    //       access_key:res.data
+    //     })
+    //     console.log(that.data.access_key,'执行哈哈哈哈')
+    //   }
+    // })
     wx.getStorage({
-      key: 'access_key',
+      key: 'openid',
       success (res) {
         that.setData({
-          access_key:res.data
+          openid:res.data
         })
-        console.log(that.data.access_key)
+        console.log(that.data.appid)
       }
     })
   },
