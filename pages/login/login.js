@@ -151,27 +151,50 @@ Page({
   onLoad: function (options) {
     const that = this;
     wx.login({
-      success: function (res) {
-        console.log(res);
-        let code = res.code;
+      success: function(data) {
+        console.log(data);
+        var that = this;
+        console.log(data.code)
+         // 获取access_token
+        wx.request({
+          url:  'http://yosee.mingcloud.net/yms/wx/mini/access/V1',
+          method: 'GET',
+          success: function(res) {
+            // console.log(res.data)
+            wx.setStorage({
+              key: 'access_token',
+              data: res.data
+            })
+          }
+        })
+         // 获取access_key获取用户的open_id
+        wx.request({
+          url:  'http://yosee.mingcloud.net/yms/wx/mini/session/V1',
+          data: {code: data.code},
+          method: 'GET',
+          success: function(res) {
+            console.log(res.data.data.session_key)
+            console.log('openid',res.data.data.openid)
+            wx.setStorage({
+              key: 'access_key',
+              data: res.data.data.session_key
+            })
+              wx.setStorage({
+              key: 'openid',
+              data: res.data.data.openid
+            })
+          }
+        })
       }
-    });
-    // wx.getStorage({
-    //   key: 'access_key',
-    //   success (res) {
-    //     that.setData({
-    //       access_key:res.data
-    //     })
-    //     console.log(that.data.access_key,'执行哈哈哈哈')
-    //   }
-    // })
+    })
     wx.getStorage({
       key: 'openid',
       success (res) {
         that.setData({
           openid:res.data
         })
-        console.log(that.data.appid)
+        console.log(res.data)
+        console.log(that.data.openid)
       }
     })
   },

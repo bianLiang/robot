@@ -1,7 +1,7 @@
 <!--miniprogram/pages/baby/baby.wxml-->
 <view style="background: #f8f8f8;height: 100%;padding-top: 20rpx;">
   <view style="margin-top:20rpx;">
-    <view wx:for="{{list}}" wx:for-item="item" wx:for-index="number"  class="item" style="border-bottom:1rpx solid #F2F2F2;">
+    <view wx:for="{{list}}"  wx:key="key" wx:for-item="item" wx:for-index="number"  class="item" style="border-bottom:1rpx solid #F2F2F2;">
       <view style="display: flex;">
         <text style="margin-left:20rpx;">{{item.studentName}}({{item.sex==='0'?'男':'女'}})</text>
       </view>

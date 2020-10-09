@@ -32,13 +32,14 @@ Component({
             that.setData({
               privilege:res.data.data.privilege
             })
+            let t = new Date().getTime();
             if(res.data.data.privilege==='f-1'|| res.data.data.privilege==='j-1' ) {
               that.setData({
-                src:'http://h5.mingcloud.net/attendance-health-xcx/student.html?userid='+that.data.userInfo.userid+''
+                src:'http://h5.mingcloud.net/attendance-health-xcx/student.html?userid='+that.data.userInfo.userid+'&_qft='+ t +''
               })
             } else {
               that.setData({
-                src:'http://h5.mingcloud.net/attendance-health-xcx/teacher.html?userid='+that.data.userInfo.userid+''
+                src:'http://h5.mingcloud.net/attendance-health-xcx/teacher.html?userid='+that.data.userInfo.userid+'&_qft='+ t +''
               })
             }
           }

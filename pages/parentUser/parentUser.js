@@ -28,6 +28,7 @@ Component({
         })
       },
       goLogin() {
+        wx.clearStorageSync()
         wx.navigateTo({
           url: '/pages/login/login',
         })

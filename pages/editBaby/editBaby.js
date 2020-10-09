@@ -57,9 +57,9 @@ Page({
       }
     }  
   },
-  onChange(e) {
+  onChangeStudentName(e){
     this.setData({
-      [e.currentTarget.dataset.prop]: e.detail.value
+      name: e.detail.value
     })
   },
   /**

@@ -14,11 +14,14 @@ Page({
     error:'',
     oneButton: [{text: '我知道了'}],
     showOneButtonDialog: false,
+    msg:'您暂未被添加到系统，请联系相关管理员'
   },
   // 发送验证码
   sendCode() {
     const that = this;
+    console.log(that.data.phone)
     if (!that.data.isCode && that.data.phone !== '') {
+
       let index = 60;
       that.setData({
         isCode:true
@@ -39,12 +42,13 @@ Page({
         
       },1000)
       wx.request({
-        url: 'http://yosee.mingcloud.net/yms/wx/send/V1?phone='+that.data.phone+'&open_id='+that.data.appid+'',
+        url: 'http://yosee.mingcloud.net/yms/wx/send/V1?phone='+that.data.phone+'&open_id='+that.data.openid+'',
         method: 'POST',
         success: function(res) {
           console.log(res.data)
         }
       })
+
     } else {
       this.setData({
           error: '手机号码不能为空'
@@ -55,42 +59,40 @@ Page({
   // 提交表单
   submit() {
     const that = this;
-    wx.request({
-      url: 'http://yosee.mingcloud.net/yms/wx/bind/V1?app_id=wx05704d42988e616e&phone='+that.data.phone+'&open_id='+that.data.openid+'&code='+that.data.codeNumder+'',
-      method: 'POST',
-      success: function(res) {
-        if (res.data.code == 200) {
-          console.log()
-          // 保存登录信息
-          wx.setStorage({
-            key: 'userInfo',
-            data: res.data.data
-          })
-          that.getUserInfo(res.data.data.userid)
-        } else {
-          // 提示添加到系统提示
+    if (!this.data.phone) {
+        this.setData({
+          error: '手机号码不能为空'
+      })
+    } else {
+      if (!this.data.codeNumder) {
           this.setData({
-              showOneButtonDialog: true
-          });
-        }
-      },
-    })
-    // if (!this.data.phone) {
-    //     this.setData({
-    //       error: '手机号码不能为空'
-    //   })
-    // } else {
-    //   if (!this.data.codeNumder) {
-    //       this.setData({
-    //         error: '验证码不能为空'
-    //     })
-    //   } else {
-    //     console.log('验证成功提交')
-        
-        
-        
-    //   }
-    // }
+            error: '验证码不能为空'
+        })
+      } else {
+        console.log('验证成功提交') 
+        wx.request({
+          url: 'http://yosee.mingcloud.net/yms/wx/bind/V1?app_id=wx05704d42988e616e&phone='+that.data.phone+'&open_id='+that.data.openid+'&code='+that.data.codeNumder+'',
+          method: 'POST',
+          success: function(res) {
+            if (res.data.code == 200) {
+              console.log()
+              // 保存登录信息
+              wx.setStorage({
+                key: 'userInfo',
+                data: res.data.data
+              })
+              that.getUserInfo(res.data.data.userid)
+            } else {
+              // 提示添加到系统提示
+              that.setData({
+                  showOneButtonDialog: true,
+                  msg:res.data.msg
+              });
+            }
+          },
+        })
+      }
+    }
     
   },
   // 获取用户详细信息
@@ -113,24 +115,66 @@ Page({
         showOneButtonDialog: false
     })
   },
-  onChange(e) {
+  onChangePhone(e) {
     this.setData({
-      [e.currentTarget.dataset.prop]: e.detail.value
+      phone:e.detail.value
+    })
+  },
+  onChangeCodeNumder(e) {
+    this.setData({
+      codeNumder:e.detail.value
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     const that = this;
+    wx.login({
+      success: function(data) {
+        console.log(data);
+        var that = this;
+        console.log(data.code)
+         // 获取access_token
+        wx.request({
+          url:  'http://yosee.mingcloud.net/yms/wx/mini/access/V1',
+          method: 'GET',
+          success: function(res) {
+            // console.log(res.data)
+            wx.setStorage({
+              key: 'access_token',
+              data: res.data
+            })
+          }
+        })
+         // 获取access_key获取用户的open_id
+        wx.request({
+          url:  'http://yosee.mingcloud.net/yms/wx/mini/session/V1',
+          data: {code: data.code},
+          method: 'GET',
+          success: function(res) {
+            console.log(res.data.data.session_key)
+            console.log('openid',res.data.data.openid)
+            wx.setStorage({
+              key: 'access_key',
+              data: res.data.data.session_key
+            })
+              wx.setStorage({
+              key: 'openid',
+              data: res.data.data.openid
+            })
+          }
+        })
+      }
+    })
     wx.getStorage({
       key: 'openid',
       success (res) {
         that.setData({
           openid:res.data
         })
-        console.log(that.data.appid)
+        console.log(res.data)
+        console.log(that.data.openid)
       }
     })
   },
