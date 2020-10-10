@@ -1,4 +1,5 @@
 // miniprogram/pages/editPersonal/editPersonal.js
+const api = require('../js/api')
 Page({
 
   /**
@@ -9,11 +10,51 @@ Page({
     phone:'',
     select:'',
     error:'',
-    userId:''
+    userId:'',
+    imglist:[]
   },
   onChange(e) {
     this.setData({
       [e.currentTarget.dataset.prop]: e.detail.value
+    })
+  },
+  onChangeName(e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  onChangePhone(e) {
+    this.setData({
+      phone: e.detail.value
+    })
+  },
+  upload() {
+    const that = this;
+    wx.showActionSheet({
+      itemList: ['从手机相册选择', '拍照'],
+      success: function(res) {
+        console.log(res.tapIndex)
+        that.img_w_show()
+      },
+      fail: function(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  img_w_show(){
+    var _this=this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+        _this.setData({
+          imglist: tempFilePaths
+        })
+        console.log(_this.data.imglist)
+      }
     })
   },
   // 提交表单
@@ -32,7 +73,7 @@ Page({
         const that = this;
         const sex = this.data.select==='male'? '0':'1'
         wx.request({
-          url: 'http://yosee.mingcloud.net/yms/user/edit?userId='+that.data.userId+'&name='+that.data.name+'&sex='+sex+'',
+          url: api + '/yms/user/edit?userId='+that.data.userId+'&name='+that.data.name+'&sex='+sex+'&portrait='+that.data.imglist[0]+'',
           method: 'POST',
           success: function(res) {
             wx.switchTab({
@@ -62,7 +103,8 @@ Page({
           name: res.data.realName,
           phone: res.data.phone,
           select:res.data.sex==='0'? 'male':'female',
-          userId:res.data.userId
+          userId:res.data.userId,
+          imglist:[res.data.img]
         })
       }
     })

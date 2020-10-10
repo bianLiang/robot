@@ -1,6 +1,7 @@
 // miniprogram/pages/login/login.js
 // const WXBizDataCrypt = require('../js/WXBizDataCrypt')
 const RdWXBizDataCrypt = require('../js/WXBizDataCrypt')
+const api = require('../js/api')
 Page({
 
   /**
@@ -92,7 +93,7 @@ Page({
           const data = pc.decryptData(encryptedData, iv);
           console.log('解密后 data: ', data)
           wx.request({
-            url: 'http://yosee.mingcloud.net/yms/wx/bind/V2?app_id=wx05704d42988e616e&phone='+data.phoneNumber+'&open_id='+that.data.openid+'',
+            url: api + '/yms/wx/bind/V2?app_id=wx05704d42988e616e&phone='+data.phoneNumber+'&open_id='+that.data.openid+'',
             method: 'POST',
             success: function(res) {
               console.log(res.data.data)
@@ -120,7 +121,7 @@ Page({
   // 获取用户详细信息
   getUserInfo(userid) {
     wx.request({
-      url: 'http://yosee.mingcloud.net/yms/user/info',
+      url: api + '/yms/user/info',
       method: 'GET',
       data:{userId:userid},
       success: function(res) {
@@ -157,7 +158,7 @@ Page({
         console.log(data.code)
          // 获取access_token
         wx.request({
-          url:  'http://yosee.mingcloud.net/yms/wx/mini/access/V1',
+          url:  api+'/yms/wx/mini/access/V1',
           method: 'GET',
           success: function(res) {
             // console.log(res.data)
@@ -169,7 +170,7 @@ Page({
         })
          // 获取access_key获取用户的open_id
         wx.request({
-          url:  'http://yosee.mingcloud.net/yms/wx/mini/session/V1',
+          url:  api+'/yms/wx/mini/session/V1',
           data: {code: data.code},
           method: 'GET',
           success: function(res) {

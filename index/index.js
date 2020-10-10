@@ -1,3 +1,4 @@
+const api = require('../pages/js/api')
 Component({
   data:{
     privilege:'',
@@ -25,21 +26,31 @@ Component({
           userInfo:res.data
         })
         wx.request({
-          url: 'http://yosee.mingcloud.net/yms/user/info',
+          url: api+ '/yms/user/info',
           method: 'GET',
           data:{userId:that.data.userInfo.userid},
           success: function(res) {
-            that.setData({
-              privilege:res.data.data.privilege
-            })
-            let t = new Date().getTime();
-            if(res.data.data.privilege==='f-1'|| res.data.data.privilege==='j-1' ) {
+            console.log(res.data.data)
+            if(res.data.code === 200) {
               that.setData({
-                src:'http://h5.mingcloud.net/attendance-health-xcx/student.html?userid='+that.data.userInfo.userid+'&_qft='+ t +''
+                privilege:res.data.data.privilege
               })
-            } else {
-              that.setData({
-                src:'http://h5.mingcloud.net/attendance-health-xcx/teacher.html?userid='+that.data.userInfo.userid+'&_qft='+ t +''
+              console.log(that.data.privilege)
+              console.log(that.data.userInfo.userid)
+              
+              let t = new Date().getTime();
+              if(res.data.data.privilege==='f-1'|| res.data.data.privilege==='j-1' ) {
+                that.setData({
+                  src:'https://h5.mingcloud.net/attendance-health-xcx/student.html?userid='+that.data.userInfo.userid+'&_qft='+ t +''
+                })
+              } else {
+                that.setData({
+                  src:'https://h5.mingcloud.net/attendance-health-xcx/teacher.html?userid='+that.data.userInfo.userid+'&_qft='+ t +''
+                })
+              }
+            } else  {
+              wx.navigateTo({
+                url: '/pages/login/login',
               })
             }
           }

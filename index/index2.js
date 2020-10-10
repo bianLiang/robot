@@ -1,3 +1,4 @@
+const api = require('../pages/js/api')
 Component({
   data: {
     userInfo:'',
@@ -28,21 +29,26 @@ Component({
           userInfo:res.data
         })
         wx.request({
-          url: 'http://yosee.mingcloud.net/yms/user/info',
+          url: api+ '/yms/user/info',
           method: 'GET',
           data:{userId:that.data.userInfo.userid},
           success: function(res) {
-            that.setData({
-              privilege:res.data.data.privilege,
-              userData:res.data.data
-            })
-            wx.setStorage({
-              key: 'userData',
-              data: res.data.data
-            })
-            console.log(that.data.userData,'父组件')
-            // that.user = that.selectComponent('user');
-            // that.user.getUserInfo();
+            console.log(res.data.code)
+            if(res.data.code === 200) {
+              that.setData({
+                privilege:res.data.data.privilege,
+                userData:res.data.data
+              })
+              wx.setStorage({
+                key: 'userData',
+                data: res.data.data
+              })
+            } else {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            }
+            
           }
         })    
       }

@@ -1,4 +1,5 @@
 // miniprogram/pages/mobilelLogin/mobilelLogin.js
+const api = require('../js/api')
 Page({
 
   /**
@@ -21,8 +22,12 @@ Page({
     const that = this;
     console.log(that.data.phone)
     if (!that.data.isCode && that.data.phone !== '') {
-
-      let index = 60;
+      if(!(/^1[3456789]\d{9}$/.test(that.data.phone))){
+        this.setData({
+          error: '手机号码格式不正确'
+        })
+      } else {
+        let index = 60;
       that.setData({
         isCode:true
       });
@@ -42,12 +47,14 @@ Page({
         
       },1000)
       wx.request({
-        url: 'http://yosee.mingcloud.net/yms/wx/send/V1?phone='+that.data.phone+'&open_id='+that.data.openid+'',
+        url: api+'/yms/wx/send/V1?phone='+that.data.phone+'&open_id='+that.data.openid+'',
         method: 'POST',
         success: function(res) {
           console.log(res.data)
         }
       })
+      }
+      
 
     } else {
       this.setData({
@@ -71,7 +78,7 @@ Page({
       } else {
         console.log('验证成功提交') 
         wx.request({
-          url: 'http://yosee.mingcloud.net/yms/wx/bind/V1?app_id=wx05704d42988e616e&phone='+that.data.phone+'&open_id='+that.data.openid+'&code='+that.data.codeNumder+'',
+          url: api+'/yms/wx/bind/V1?app_id=wx05704d42988e616e&phone='+that.data.phone+'&open_id='+that.data.openid+'&code='+that.data.codeNumder+'',
           method: 'POST',
           success: function(res) {
             if (res.data.code == 200) {
@@ -98,7 +105,7 @@ Page({
   // 获取用户详细信息
   getUserInfo(userid) {
     wx.request({
-      url: 'http://yosee.mingcloud.net/yms/user/info',
+      url: api+'/yms/user/info',
       method: 'GET',
       data:{userId:userid},
       success: function(res) {
@@ -137,7 +144,7 @@ Page({
         console.log(data.code)
          // 获取access_token
         wx.request({
-          url:  'http://yosee.mingcloud.net/yms/wx/mini/access/V1',
+          url:  api+'/yms/wx/mini/access/V1',
           method: 'GET',
           success: function(res) {
             // console.log(res.data)
@@ -149,7 +156,7 @@ Page({
         })
          // 获取access_key获取用户的open_id
         wx.request({
-          url:  'http://yosee.mingcloud.net/yms/wx/mini/session/V1',
+          url:  api+'/yms/wx/mini/session/V1',
           data: {code: data.code},
           method: 'GET',
           success: function(res) {

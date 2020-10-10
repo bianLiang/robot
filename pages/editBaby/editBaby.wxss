@@ -2,6 +2,7 @@
 .age-box {
   display: flex;
   justify-content: center;
+  
 }
 .age-item{
   text-align: center;

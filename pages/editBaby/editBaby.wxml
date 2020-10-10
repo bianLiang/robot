@@ -1,5 +1,8 @@
 <!--miniprogram/pages/editBaby/editBaby.wxml-->
-<cover-image style="width: 120rpx;height: 120rpx;margin:30rpx auto;" src="../../images/touxiang.png"></cover-image>
+<view style="width:100%;text-align: center;">
+  <image  style="width: 120rpx;height: 120rpx;margin:30rpx auto;border-radius: 60rpx;" src="{{imglist.length>0?imglist[0]:'../../images/touxiang.png'}}"></image>
+</view>
+
 <view class="age-box">
   <view class="age-item">
     <cover-image bindtap='selectBtn' data-gender="male" style="width: 90rpx;height: 90rpx;margin:10rpx auto;" src="{{select==='male'?'../../images/nan_s.png':'../../images/nan.png'}}"></cover-image>

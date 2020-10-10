@@ -2,6 +2,5 @@
   "usingComponents": {},
   "navigationBarBackgroundColor": "#43B478",
   "navigationBarTitleText": "健康考勤",
-  "navigationBarTextStyle": "white",
-  "navigationStyle": "custom"
+  "navigationBarTextStyle": "white"
 }

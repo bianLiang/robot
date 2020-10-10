@@ -1,4 +1,5 @@
 // miniprogram/pages/editBaby/editBaby.js
+const api = require('../js/api')
 Page({
 
   /**
@@ -9,7 +10,38 @@ Page({
     select:'',
     error:'',
     time:'2020-06-01',
-    dataBaby:{}
+    dataBaby:{},
+    imglist:[],
+    tempFilePaths:''
+  },
+  upload() {
+    const that = this;
+    wx.showActionSheet({
+      itemList: ['从手机相册选择', '拍照'],
+      success: function(res) {
+        console.log(res.tapIndex)
+        that.img_w_show()
+      },
+      fail: function(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  img_w_show(){
+    var _this=this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+        _this.setData({
+          imglist: _this.data.imglist.concat(tempFilePaths)
+        })
+        console.log(_this.data.imglist)
+      }
+    })
   },
   selectBtn(event) {
     this.setData({
@@ -43,7 +75,7 @@ Page({
         const data = this.data.dataBaby;
         const sex = this.data.select==='male'? '0':'1'
         wx.request({
-          url: 'http://yosee.mingcloud.net/yms/user/student/edit?studentId='+data.studentId+'&name='+that.data.name+'&birthday='+that.data.time+'&sex='+sex+'',
+          url: api + '/yms/user/student/edit?studentId='+data.studentId+'&name='+that.data.name+'&birthday='+that.data.time+'&sex='+sex+'',
           method: 'POST',
           success: function(res) {
             wx.switchTab({
@@ -74,6 +106,7 @@ Page({
         console.log(res.data)
         that.setData({
           dataBaby: res.data.studentList[options.index],
+          name: res.data.studentList[options.index].studentName,
           time:res.data.studentList[options.index].birthday,
           select:res.data.studentList[options.index].sex==='0'? 'male':'female'
         })
